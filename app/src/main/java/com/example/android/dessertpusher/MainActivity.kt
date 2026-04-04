@@ -28,11 +28,6 @@ import androidx.lifecycle.LifecycleObserver
 import com.example.android.dessertpusher.databinding.ActivityMainBinding
 import timber.log.Timber
 
-/** onSaveInstanceState Bundle Keys **/
-const val KEY_REVENUE = "revenue_key"
-const val KEY_DESSERT_SOLD = "dessert_sold_key"
-const val KEY_TIMER_SECONDS = "timer_seconds_key"
-
 class MainActivity : AppCompatActivity(), LifecycleObserver {
 
     private var revenue = 0
@@ -80,19 +75,9 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
             onDessertClicked()
         }
 
-        // Setup dessertTimer, passing in the lifecycle
-        dessertTimer = DessertTimer(this.lifecycle)
-
-        // If there is a savedInstanceState bundle, then you're "restarting" the activity
-        // If there isn't a bundle, then it's a "fresh" start
-        if (savedInstanceState != null) {
-            // Get all the game state information from the bundle, set it
-            revenue = savedInstanceState.getInt(KEY_REVENUE, 0)
-            dessertsSold = savedInstanceState.getInt(KEY_DESSERT_SOLD, 0)
-            dessertTimer.secondsCount = savedInstanceState.getInt(KEY_TIMER_SECONDS, 0)
-            showCurrentDessert()
-
-        }
+        // TODO (04) Pass in 'this' MainActivity's lifecycle so that it is observed
+        // Setup dessertTimer
+        dessertTimer = DessertTimer()
 
         // Set the TextViews to the right values
         binding.revenue = revenue
@@ -169,26 +154,12 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
         return super.onOptionsItemSelected(item)
     }
 
-    /**
-     * Called when the user navigates away from the app but might come back
-     */
-    override fun onSaveInstanceState(outState: Bundle) {
-        outState.putInt(KEY_REVENUE, revenue)
-        outState.putInt(KEY_DESSERT_SOLD, dessertsSold)
-        outState.putInt(KEY_TIMER_SECONDS, dessertTimer.secondsCount)
-        Timber.i("onSaveInstanceState Called")
-        super.onSaveInstanceState(outState)
-    }
-
-    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-        super.onRestoreInstanceState(savedInstanceState)
-        Timber.i("onRestoreInstanceState Called")
-    }
-
     /** Lifecycle Methods **/
+    // TODO (05) Remove the calls to startTimer and stopTimer here; you shouldn't need them anymore!
     override fun onStart() {
         super.onStart()
         Timber.i("onStart Called")
+        dessertTimer.startTimer()
     }
 
     override fun onResume() {
@@ -204,6 +175,7 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
     override fun onStop() {
         super.onStop()
         Timber.i("onStop Called")
+        dessertTimer.stopTimer()
     }
 
     override fun onDestroy() {
