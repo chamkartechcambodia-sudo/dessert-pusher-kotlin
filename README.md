@@ -1,31 +1,31 @@
 # 🍰 DessertPusher — Activity Lifecycle
 
-Ứng dụng thực hành cho bài học **Android Activity Lifecycle** — được nâng cấp lên **Gradle Kotlin DSL + TOML Version Catalog + AGP 9.0.1**.
+A hands-on practice app for learning **Android Activity Lifecycle** — upgraded to use **Gradle Kotlin DSL + TOML Version Catalog + AGP 9.0.1**.
 
 ---
 
-## 🎮 Giới thiệu ứng dụng
+## 🎮 About the App
 
-**DessertPusher** là một mini-game đơn giản:
-- Nhấn vào hình ảnh món tráng miệng → kiếm tiền
-- Bán đủ số lượng → tự động mở khóa món đắt hơn
-- Mục tiêu học tập: quan sát **vòng đời (Lifecycle)** của một Activity thông qua Logcat
+**DessertPusher** is a simple mini-game:
+- Tap the dessert image → earn money
+- Sell enough desserts → automatically unlock a more expensive one
+- Learning goal: observe the **Activity Lifecycle** callbacks through Logcat
 
-| Màn hình | Mô tả |
+| Screen | Description |
 |---|---|
-| Nhấn để bán dessert | Mỗi lần nhấn cộng tiền và tăng số lượng |
-| Dessert tự động nâng cấp | Từ Cupcake → Donut → ... → Oreo |
-| Chia sẻ kết quả | Nút Share trên thanh menu |
+| Tap to sell desserts | Each tap adds revenue and increases count |
+| Dessert auto-upgrades | From Cupcake → Donut → ... → Oreo |
+| Share results | Share button in the action bar |
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Thành phần | Phiên bản |
+| Component | Version |
 |---|---|
 | Android Gradle Plugin (AGP) | 9.0.1 |
 | Gradle | 9.1.0 |
-| Kotlin | — *(nhúng trong AGP 9.x)* |
+| Kotlin | *(embedded in AGP 9.x)* |
 | `compileSdk` / `targetSdk` | 36 |
 | `minSdk` | 30 |
 | JVM target | 17 |
@@ -34,67 +34,67 @@
 | Lifecycle | 2.10.0 |
 | Timber | 5.0.1 |
 
-### Cấu trúc Gradle (Kotlin DSL + TOML)
+### Gradle Structure (Kotlin DSL + TOML)
 
 ```
-dessert-pusher-kts/
+dessert-pusher-kotlin/
 ├── gradle/
-│   ├── libs.versions.toml       ← Khai báo tất cả versions tập trung
+│   ├── libs.versions.toml       ← Centralized version declarations
 │   └── wrapper/
 │       └── gradle-wrapper.properties
-├── settings.gradle.kts          ← Cấu hình project (Kotlin DSL)
+├── settings.gradle.kts          ← Project settings (Kotlin DSL)
 ├── build.gradle.kts             ← Root build file (Kotlin DSL)
 └── app/
     └── build.gradle.kts         ← App module build file (Kotlin DSL)
 ```
 
-> **Tại sao dùng Kotlin DSL + TOML?**
-> - **Kotlin DSL** (`.kts`): autocomplete tốt hơn trong Android Studio, type-safe, dễ refactor
-> - **TOML Version Catalog**: quản lý tất cả versions ở một chỗ (`libs.versions.toml`), tránh duplicate, dễ nâng cấp
+> **Why Kotlin DSL + TOML?**
+> - **Kotlin DSL** (`.kts`): better autocomplete in Android Studio, type-safe, easier to refactor
+> - **TOML Version Catalog**: all versions in one place (`libs.versions.toml`), no duplication, easy to upgrade
 
 ---
 
-## 📋 Yêu cầu cài đặt
+## 📋 Prerequisites
 
-- **Android Studio** Ladybug (2024.2.x) trở lên
+- **Android Studio** Ladybug (2024.2.x) or later
 - **JDK 17** (File → Project Structure → SDK Location → Gradle JDK)
-- **Git** đã cài đặt
+- **Git** installed
 
-> ⚠️ Nếu Android Studio báo lỗi JDK, vào:
-> `File → Settings → Build, Execution, Deployment → Build Tools → Gradle → Gradle JVM` → chọn **JDK 17**
+> ⚠️ If Android Studio reports a JDK error, go to:
+> `File → Settings → Build, Execution, Deployment → Build Tools → Gradle → Gradle JVM` → select **JDK 17**
 
 ---
 
-## 📂 Cấu trúc Branches
+## 📂 Branch Structure
 
-Mỗi bước học có **2 branches**: `Exercise` (bài tập) và `Solution` (đáp án).
+Each lesson step has **2 branches**: `Exercise` (your task) and `Solution` (the answer).
 
 ```
 master
-├── Step.01-Exercise-Logging-a-callback      ← Bài tập Step 1
-├── Step.01-Solution-Logging-a-callback      ← Đáp án Step 1
-├── Step.02-Exercise-Timber-for-logging      ← Bài tập Step 2
-├── Step.02-Solution-Timber-for-logging      ← Đáp án Step 2
-├── Step.03-Exercise-Setup-and-tear-down     ← Bài tập Step 3
-├── Step.03-Solution-Setup-and-tear-down     ← Đáp án Step 3
-├── Step.04-Exercise-Add-the-lifecycle-library   ← Bài tập Step 4
-├── Step.04-Solution-Add-the-lifecycle-library   ← Đáp án Step 4
-├── Step.05-Exercise-Implement-onSaveInstanceState  ← Bài tập Step 5
-└── Step.05-Solution-Implement-onSaveInstanceState  ← Đáp án Step 5
+├── Step.01-Exercise-Logging-a-callback           ← Exercise Step 1
+├── Step.01-Solution-Logging-a-callback           ← Solution Step 1
+├── Step.02-Exercise-Timber-for-logging           ← Exercise Step 2
+├── Step.02-Solution-Timber-for-logging           ← Solution Step 2
+├── Step.03-Exercise-Setup-and-tear-down          ← Exercise Step 3
+├── Step.03-Solution-Setup-and-tear-down          ← Solution Step 3
+├── Step.04-Exercise-Add-the-lifecycle-library    ← Exercise Step 4
+├── Step.04-Solution-Add-the-lifecycle-library    ← Solution Step 4
+├── Step.05-Exercise-Implement-onSaveInstanceState  ← Exercise Step 5
+└── Step.05-Solution-Implement-onSaveInstanceState  ← Solution Step 5
 ```
 
-### Chi tiết từng Step
+### Step Details
 
 #### 🔵 Step 01 — Logging a Callback
-**Mục tiêu:** Hiểu `onCreate()` và `onStart()` là gì, khi nào chúng được gọi.
+**Goal:** Understand when `onCreate()` and `onStart()` are called.
 
-| TODO | Vị trí | Nhiệm vụ |
+| TODO | Location | Task |
 |---|---|---|
-| TODO 01 | `MainActivity.kt` | Thêm `Log.i()` trong `onCreate()` |
-| TODO 02 | `MainActivity.kt` | Override `onStart()` và thêm log |
+| TODO 01 | `MainActivity.kt` | Add `Log.i()` inside `onCreate()` |
+| TODO 02 | `MainActivity.kt` | Override `onStart()` and add a log statement |
 
 ```kotlin
-// Ví dụ:
+// Example:
 override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     Log.i("MainActivity", "onCreate called")
@@ -104,63 +104,63 @@ override fun onCreate(savedInstanceState: Bundle?) {
 ---
 
 #### 🔵 Step 02 — Timber for Logging
-**Mục tiêu:** Thay thế `Log` bằng thư viện **Timber** — cách logging chuyên nghiệp hơn.
+**Goal:** Replace `Log` with the **Timber** library — a more professional logging approach.
 
-| TODO | Vị trí | Nhiệm vụ |
+| TODO | Location | Task |
 |---|---|---|
-| TODO 02 | `PusherApplication.kt` | Tạo Application class |
-| TODO 03 | `AndroidManifest.xml` | Đăng ký Application class |
-| TODO 04 | `PusherApplication.kt` | Khởi tạo Timber: `Timber.plant(Timber.DebugTree())` |
-| TODO 05 | `MainActivity.kt` | Override tất cả lifecycle methods và log bằng Timber |
+| TODO 02 | `PusherApplication.kt` | Create the Application class |
+| TODO 03 | `AndroidManifest.xml` | Register the Application class |
+| TODO 04 | `PusherApplication.kt` | Initialize Timber: `Timber.plant(Timber.DebugTree())` |
+| TODO 05 | `MainActivity.kt` | Override all remaining lifecycle methods and log with Timber |
 
 ```kotlin
-// Ví dụ dùng Timber:
+// With Timber:
 Timber.i("onCreate called")
-// Thay vì:
+// Instead of:
 Log.i("MainActivity", "onCreate called")
 ```
 
 ---
 
 #### 🔵 Step 03 — Setup and Tear Down
-**Mục tiêu:** Dùng `onStart()` / `onStop()` để khởi động và dừng `DessertTimer`.
+**Goal:** Use `onStart()` / `onStop()` to start and stop the `DessertTimer`.
 
-| TODO | Vị trí | Nhiệm vụ |
+| TODO | Location | Task |
 |---|---|---|
-| TODO 02 | `MainActivity.kt` | Tạo instance của `DessertTimer` |
-| TODO 03 | `MainActivity.kt` | Gọi `timer.startTimer()` trong `onStart()` và `timer.stopTimer()` trong `onStop()` |
+| TODO 02 | `MainActivity.kt` | Create an instance of `DessertTimer` |
+| TODO 03 | `MainActivity.kt` | Call `timer.startTimer()` in `onStart()` and `timer.stopTimer()` in `onStop()` |
 
-> **Bài học:** Tài nguyên nên được khởi tạo ở `onStart()` và giải phóng ở `onStop()` để tránh leak.
+> **Lesson:** Resources should be initialized in `onStart()` and released in `onStop()` to avoid memory leaks.
 
 ---
 
 #### 🔵 Step 04 — Add the Lifecycle Library
-**Mục tiêu:** Dùng **Lifecycle-Aware Components** — `DessertTimer` tự quản lý lifecycle mà không cần `MainActivity` gọi thủ công.
+**Goal:** Use **Lifecycle-Aware Components** — `DessertTimer` manages its own lifecycle without `MainActivity` calling it manually.
 
-| TODO | Vị trí | Nhiệm vụ |
+| TODO | Location | Task |
 |---|---|---|
-| TODO 04 | `MainActivity.kt` | Truyền `this.lifecycle` vào `DessertTimer` |
-| TODO 05 | `MainActivity.kt` | Xóa các lệnh gọi `startTimer()` / `stopTimer()` thủ công |
+| TODO 04 | `MainActivity.kt` | Pass `this.lifecycle` into `DessertTimer` |
+| TODO 05 | `MainActivity.kt` | Remove the manual `startTimer()` / `stopTimer()` calls |
 
 ```kotlin
-// Trước (Step 03):
+// Before (Step 03):
 dessertTimer = DessertTimer()
-// Sau (Step 04):
+// After (Step 04):
 dessertTimer = DessertTimer(this.lifecycle)
 ```
 
-> **Bài học:** `LifecycleObserver` giúp component tự lắng nghe lifecycle → code sạch hơn, ít bug hơn.
+> **Lesson:** `LifecycleObserver` allows a component to observe lifecycle events on its own → cleaner code, fewer bugs.
 
 ---
 
 #### 🔵 Step 05 — Implement onSaveInstanceState
-**Mục tiêu:** Lưu và khôi phục trạng thái khi xoay màn hình hoặc app bị kill.
+**Goal:** Save and restore UI state when the screen rotates or the app is killed by the system.
 
-| TODO | Vị trí | Nhiệm vụ |
+| TODO | Location | Task |
 |---|---|---|
-| TODO 01 | `MainActivity.kt` | Override `onSaveInstanceState()` và `onRestoreInstanceState()` |
-| TODO 02 | `MainActivity.kt` | Lưu `revenue`, `dessertsSold`, `timerSeconds` vào Bundle |
-| TODO 03 | `MainActivity.kt` | Đọc lại dữ liệu từ Bundle trong `onCreate()` |
+| TODO 01 | `MainActivity.kt` | Override `onSaveInstanceState()` and `onRestoreInstanceState()` |
+| TODO 02 | `MainActivity.kt` | Save `revenue`, `dessertsSold`, and `timerSeconds` into the Bundle |
+| TODO 03 | `MainActivity.kt` | Read the data back from the Bundle inside `onCreate()` |
 
 ```kotlin
 override fun onSaveInstanceState(outState: Bundle) {
@@ -170,125 +170,126 @@ override fun onSaveInstanceState(outState: Bundle) {
 }
 ```
 
-> **Bài học:** Dữ liệu UI sẽ mất khi xoay màn hình nếu không lưu vào `savedInstanceState`.
+> **Lesson:** UI data is lost on screen rotation unless saved to `savedInstanceState`.
 
 ---
 
-## 🚀 Hướng dẫn sử dụng
+## 🚀 How to Use This Repository
 
-### 1. Clone repo
+### 1. Clone the repo
 
 ```bash
 git clone https://github.com/chamkartechcambodia-sudo/dessert-pusher-kotlin.git
 cd dessert-pusher-kotlin
 ```
 
-### 2. Mở bằng Android Studio
+### 2. Open in Android Studio
 
 ```
-File → Open → chọn thư mục dessert-pusher-kotlin
+File → Open → select the dessert-pusher-kotlin folder
 ```
 
-Đợi Gradle sync hoàn tất.
+Wait for the Gradle sync to complete.
 
-### 3. Chuyển sang branch bài tập
+### 3. Check out the exercise branch
 
 ```bash
-# Ví dụ: làm bài tập Step 1
+# Example: work on Step 1 exercise
 git checkout Step.01-Exercise-Logging-a-callback
 ```
 
-### 4. Tìm và hoàn thành TODOs
+### 4. Find and complete the TODOs
 
-Trong Android Studio, mở **TODO panel**:
+In Android Studio, open the **TODO panel**:
 > `View → Tool Windows → TODO`
 
-Các TODO được đánh số thứ tự — làm lần lượt từ trên xuống.
+TODOs are numbered — complete them in order from top to bottom.
 
-### 5. So sánh với đáp án
+### 5. Compare with the solution
 
 ```bash
-# Xem đáp án Step 1
+# View the solution for Step 1
 git checkout Step.01-Solution-Logging-a-callback
 
-# Hoặc so sánh diff
+# Or compare the diff locally
 git diff Step.01-Exercise-Logging-a-callback Step.01-Solution-Logging-a-callback
 ```
 
-### 6. Quan sát Lifecycle trong Logcat
+### 6. Observe the Lifecycle in Logcat
 
-Sau khi chạy app, mở **Logcat** trong Android Studio và filter theo tag:
+After running the app, open **Logcat** in Android Studio and filter by tag:
 
 ```
 Tag: MainActivity
 ```
 
-Thử các hành động sau và quan sát log:
-| Hành động | Callbacks được gọi |
+Try these actions and observe the logs:
+
+| Action | Callbacks triggered |
 |---|---|
-| Mở app | `onCreate` → `onStart` → `onResume` |
-| Nhấn Home | `onPause` → `onStop` |
-| Quay lại app | `onRestart` → `onStart` → `onResume` |
-| Xoay màn hình | `onPause` → `onStop` → `onDestroy` → `onCreate` → ... |
-| Thoát app | `onPause` → `onStop` → `onDestroy` |
+| Open the app | `onCreate` → `onStart` → `onResume` |
+| Press Home | `onPause` → `onStop` |
+| Return to app | `onRestart` → `onStart` → `onResume` |
+| Rotate screen | `onPause` → `onStop` → `onDestroy` → `onCreate` → ... |
+| Close the app | `onPause` → `onStop` → `onDestroy` |
 
 ---
 
-## 📊 Sơ đồ Activity Lifecycle
+## 📊 Activity Lifecycle Diagram
 
 ```
          ┌─────────────┐
-         │   onCreate  │ ← App khởi động / xoay màn hình
+         │  onCreate() │ ← App launched / screen rotated
          └──────┬──────┘
                 ↓
          ┌─────────────┐
-         │   onStart   │ ← Activity hiển thị
+         │  onStart()  │ ← Activity becomes visible
          └──────┬──────┘
                 ↓
          ┌─────────────┐
-    ┌──→ │   onResume  │ ← Người dùng tương tác được
+    ┌──→ │  onResume() │ ← User can interact
     │    └──────┬──────┘
     │           ↓
     │    ┌─────────────┐
-    │    │   onPause   │ ← Mất focus (dialog, chuyển app)
+    │    │  onPause()  │ ← Lost focus (dialog, switching app)
     │    └──────┬──────┘
     │           ↓
     │    ┌─────────────┐
-    │    │   onStop    │ ← Activity không còn hiển thị
+    │    │  onStop()   │ ← Activity no longer visible
     │    └──────┬──────┘
     │           ↓
-    │    ┌─────────────┐
-    └────│  onRestart  │ ← Quay lại app
-         └──────┬──────┘
-                        ↓ (nếu bị destroy)
-                 ┌─────────────┐
-                 │  onDestroy  │ ← Giải phóng tài nguyên
-                 └─────────────┘
+    │    ┌──────────────┐
+    └────│ onRestart()  │ ← User returns to app
+         └──────────────┘
+                ↓ (if destroyed)
+         ┌─────────────┐
+         │ onDestroy() │ ← Release all resources
+         └─────────────┘
 ```
 
 ---
 
-## 📁 Cấu trúc Source Code
+## 📁 Source Code Structure
 
 ```
 app/src/main/java/com/example/android/dessertpusher/
-├── MainActivity.kt        ← Màn hình chính, xử lý game logic + lifecycle
-├── DessertTimer.kt        ← Timer tích hợp LifecycleObserver
-└── PusherApplication.kt  ← Khởi tạo Timber logging
+├── MainActivity.kt        ← Main screen: game logic + lifecycle callbacks
+├── DessertTimer.kt        ← Timer integrated with LifecycleObserver
+└── PusherApplication.kt  ← Timber logging initialization
 ```
 
 ---
 
-## 💡 Lưu ý cho sinh viên
+## 💡 Tips for Students
 
-1. **Đọc kỹ comment TODO** trước khi code — chúng giải thích rõ phải làm gì
-2. **Chạy app sau mỗi TODO** để thấy kết quả ngay trên Logcat
-3. **Không xem Solution trước** khi tự làm xong Exercise
-4. Nếu bị stuck, dùng lệnh `git diff` để so sánh với Solution
-5. **Mỗi branch là độc lập** — không cần lo việc branch này ảnh hưởng branch kia
+1. **Read the TODO comments carefully** before writing code — they explain exactly what to do
+2. **Run the app after each TODO** to see the result in Logcat immediately
+3. **Do not look at the Solution** before finishing the Exercise on your own
+4. If you get stuck, use `git diff` to compare with the Solution branch
+5. **Each branch is independent** — changes on one branch do not affect others
 
 ---
 
-## 🐛 Báo lỗi
+## 🐛 Report Issues
 
-Nếu phát hiện lỗi trong project, vui lòng tạo [GitHub Issue](https://github.com/chamkartechcambodia-sudo/dessert-pusher-kotlin/issues).
+Found a bug or issue in this project? Please open a [GitHub Issue](https://github.com/chamkartechcambodia-sudo/dessert-pusher-kotlin/issues).
