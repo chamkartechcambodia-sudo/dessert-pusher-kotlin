@@ -1,13 +1,11 @@
 [versions]
 agp = "9.0.1"
-kotlin = "2.1.21"
 appcompat = "1.7.1"
 constraintlayout = "2.2.1"
 timber = "5.0.1"
 lifecycle = "2.10.0"
 
 [libraries]
-kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin" }
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
@@ -15,4 +13,4 @@ lifecycle-common-java8 = { group = "androidx.lifecycle", name = "lifecycle-commo
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+
