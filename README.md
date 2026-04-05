@@ -238,34 +238,45 @@ Try these actions and observe the logs:
 ## 📊 Activity Lifecycle Diagram
 
 ```
-         ┌─────────────┐
-         │  onCreate() │ ← App launched / screen rotated
-         └──────┬──────┘
-                ↓
-         ┌─────────────┐
-         │  onStart()  │ ← Activity becomes visible
-         └──────┬──────┘
-                ↓
-         ┌─────────────┐
-    ┌──→ │  onResume() │ ← User can interact
-    │    └──────┬──────┘
-    │           ↓
-    │    ┌─────────────┐
-    │    │  onPause()  │ ← Lost focus (dialog, switching app)
-    │    └──────┬──────┘
-    │           ↓
-    │    ┌─────────────┐
-    │    │  onStop()   │ ← Activity no longer visible
-    │    └──────┬──────┘
-    │           ↓
-    │    ┌──────────────┐
-    └────│ onRestart()  │ ← User returns to app
-         └──────────────┘
-                ↓ (if destroyed)
-         ┌─────────────┐
-         │ onDestroy() │ ← Release all resources
-         └─────────────┘
+              App launched
+              (savedInstanceState = null)
+                   │
+                   ▼
+            ┌────────────┐
+            │ onCreate() │◄─────────────────────────────────────┐
+            └─────┬──────┘                                      │
+                  ▼                                             │ screen rotated /
+            ┌────────────┐◄──────────────────┐                  │ activity recreated
+            │ onStart()  │                   │                  │
+            └─────┬──────┘                   │                  │
+                  ▼                    ┌─────┴──────┐           │
+            ┌────────────┐             │onRestart() │           │
+     ┌─────►│ onResume() │             └─────┬──────┘           │
+     │      └─────┬──────┘                   │                  │
+     │            │ App running              │ user returns     │
+     │            ▼                          │ (process alive)  │
+     │      ┌────────────┐                   │                  │
+     │      │ onPause()  │                   │                  │
+     │      └─────┬──────┘                   │                  │
+     └────────────┘ user returns             │                  │
+      (partially covered)                    │                  │
+                  │ fully hidden             │                  │
+                  ▼                          │                  │
+            ┌────────────┐                   │                  │
+            │  onStop()  │◄──────────────────┘                  │
+            │            │                                      │
+            │onSaveInstance                                     │
+            │  State()   │──── process killed by system ────────┘
+            └─────┬──────┘     (no onDestroy called!)
+                  │                          user returns →  onCreate(savedInstanceState)
+                  ▼ finish() / system
+            ┌────────────┐
+            │onDestroy() │
+            └────────────┘
 ```
+
+> **Key insight for Step 05:** When the system kills the process (low memory), `onDestroy()` is **never called**.
+> `onSaveInstanceState()` is the only way to preserve UI state across process death.
 
 ---
 
